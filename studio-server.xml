@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Studio-Server</Name>
+  <Repository>thebeartech/studio-server:latest</Repository>
+  <Registry>https://hub.docker.com/r/thebeartech/studio-server</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://wirebear.co.uk/software/studio-server</Support>
+  <Project>https://wirebear.co.uk/software/studio-server</Project>
+  <Overview>Studio Server is a self-contained Docker container that serves as a DaVinci Resolve Project Server. It provides an easy-to-use web interface to manage PostgreSQL databases, user permissions, and automated database backups for video editing collaboration.</Overview>
+  <Category>Tools: MediaApp:Video Productivity:</Category>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <Icon>https://wirebear.co.uk/assets/img/logo.png</Icon>
+  <ExtraParams/>
+  
+  <!-- Web UI Port -->
+  <Config Name="Web UI Port" Target="8000" Default="8000" Mode="tcp" Description="Web interface for managing Studio Server." Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+
+  <!-- PostgreSQL Port -->
+  <Config Name="PostgreSQL Port" Target="5432" Default="5432" Mode="tcp" Description="Database port used by DaVinci Resolve client machines." Type="Port" Display="always" Required="true" Mask="false">5432</Config>
+
+  <!-- Database Storage Path -->
+  <Config Name="Database Path" Target="/database" Default="/mnt/user/appdata/studio-server/database" Mode="rw" Description="Stores the PostgreSQL relational database. SSD/NVMe recommended." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/studio-server/database</Config>
+
+  <!-- Backup Storage Path -->
+  <Config Name="Backups Path" Target="/backups" Default="/mnt/user/appdata/studio-server/backups" Mode="rw" Description="Stores manual and scheduled database backups." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/studio-server/backups</Config>
+
+  <!-- Backup Jobs Path -->
+  <Config Name="Jobs Path" Target="/jobs" Default="/mnt/user/appdata/studio-server/jobs" Mode="rw" Description="Stores automated backup schedule configurations." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/studio-server/jobs</Config>
+
+  <!-- Pre/Post Backup Hooks Path -->
+  <Config Name="Hooks Path" Target="/hooks" Default="/mnt/user/appdata/studio-server/hooks" Mode="rw" Description="Stores custom backup hook scripts." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/studio-server/hooks</Config>
+
+  <!-- Timezone Setting -->
+  <Config Name="Timezone" Target="TZ" Default="America/New_York" Description="Container time zone for scheduled backup tasks." Type="Variable" Display="always" Required="true" Mask="false">America/New_York</Config>
+</Container>
