@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>Studio-Server</Name>
-  <Repository>thebeartech/studio-server:latest</Repository>
+  <Repository>allebb/studio-server:latest</Repository>
   <Registry>https://hub.docker.com/r/thebeartech/studio-server</Registry>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
