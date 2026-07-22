@@ -9,28 +9,31 @@
   <Project>https://wirebear.co.uk/software/studio-server</Project>
   <Overview>Studio Server is a self-contained Docker container that serves as a DaVinci Resolve Project Server. It provides an easy-to-use web interface to manage PostgreSQL databases, user permissions, and automated database backups for video editing collaboration.</Overview>
   <Category>Tools: MediaApp:Video Productivity:</Category>
-  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <WebUI>http://[IP]:[PORT:8543]</WebUI>
   <Icon>https://wirebear.co.uk/assets/img/logo.png</Icon>
   <ExtraParams/>
   
   <!-- Web UI Port -->
-  <Config Name="Web UI Port" Target="8000" Default="8000" Mode="tcp" Description="Web interface for managing Studio Server." Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+  <Config Name="Web UI Port" Target="8543" Default="8543" Mode="tcp" Description="Web interface for managing Studio Server." Type="Port" Display="always" Required="true" Mask="false">8543</Config>
 
   <!-- PostgreSQL Port -->
   <Config Name="PostgreSQL Port" Target="5432" Default="5432" Mode="tcp" Description="Database port used by DaVinci Resolve client machines." Type="Port" Display="always" Required="true" Mask="false">5432</Config>
 
+  <!-- Collaboration Chat Port -->
+  <Config Name="Collaboration Port" Target="50059" Default="50059" Mode="tcp" Description="Used for DaVinci Resolve team collaboration and project chat features." Type="Port" Display="always" Required="true" Mask="false">50059</Config>
+
   <!-- Database Storage Path -->
-  <Config Name="Database Path" Target="/database" Default="/mnt/user/appdata/studio-server/database" Mode="rw" Description="Stores the PostgreSQL relational database. SSD/NVMe recommended." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/studio-server/database</Config>
+  <Config Name="Database Path" Target="/var/studio-server/database/" Default="/mnt/user/appdata/studio-server/database" Mode="rw" Description="Stores the PostgreSQL relational database. SSD/NVMe recommended." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/studio-server/database</Config>
 
   <!-- Backup Storage Path -->
-  <Config Name="Backups Path" Target="/backups" Default="/mnt/user/appdata/studio-server/backups" Mode="rw" Description="Stores manual and scheduled database backups." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/studio-server/backups</Config>
+  <Config Name="Backups Path" Target="/var/studio-server/backups/" Default="/mnt/user/appdata/studio-server/backups" Mode="rw" Description="Stores manual and scheduled database backups." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/studio-server/backups</Config>
 
   <!-- Backup Jobs Path -->
-  <Config Name="Jobs Path" Target="/jobs" Default="/mnt/user/appdata/studio-server/jobs" Mode="rw" Description="Stores automated backup schedule configurations." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/studio-server/jobs</Config>
+  <Config Name="Jobs Path" Target="/etc/cron.d/" Default="/mnt/user/appdata/studio-server/jobs" Mode="rw" Description="Stores automated backup schedule configurations." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/studio-server/jobs</Config>
 
   <!-- Pre/Post Backup Hooks Path -->
-  <Config Name="Hooks Path" Target="/hooks" Default="/mnt/user/appdata/studio-server/hooks" Mode="rw" Description="Stores custom backup hook scripts." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/studio-server/hooks</Config>
+  <Config Name="Hooks Path" Target="/var/studio-server/hooks/" Default="/mnt/user/appdata/studio-server/hooks" Mode="rw" Description="Stores custom backup hook scripts." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/studio-server/hooks</Config>
 
-  <!-- Timezone Setting -->
-  <Config Name="Timezone" Target="TZ" Default="America/New_York" Description="Container time zone for scheduled backup tasks." Type="Variable" Display="always" Required="true" Mask="false">America/New_York</Config>
+  <!-- Timezone Setting (US Dropdown) -->
+  <Config Name="Timezone" Target="TZ" Default="America/New_York" Mode="" Description="Container time zone for scheduled backup tasks." Type="Variable" Display="always" Required="true" Mask="false" TargetList="America/New_York|America/Detroit|America/Chicago|America/North_Dakota/Center|America/Denver|America/Phoenix|America/Los_Angeles|America/Anchorage|America/Adak|Pacific/Honolulu">America/New_York</Config>
 </Container>
