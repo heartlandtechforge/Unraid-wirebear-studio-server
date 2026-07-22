@@ -2,7 +2,7 @@
 <Container version="2">
   <Name>Studio-Server</Name>
   <Repository>allebb/studio-server:latest</Repository>
-  <Registry>https://hub.docker.com/r/thebeartech/studio-server</Registry>
+  <Registry>https://hub.docker.com/r/allebb/studio-server</Registry>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
   <Support>https://wirebear.co.uk/software/studio-server</Support>
